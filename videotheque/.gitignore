@@ -32,3 +32,7 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+videotheque/src/manifest.json
+videotheque/src/service-worker.js
+videotheque/src/declarations.d.ts
