@@ -32,6 +32,8 @@ CREATE TABLE vid_movie(
         name         Varchar (25) NOT NULL ,
         release_date Date NOT NULL ,
         rate         Int NOT NULL ,
+        description  Text NOT NULL ,
+        duration     Int NOT NULL ,
         PRIMARY KEY (id_movie )
 )ENGINE=InnoDB;
 
@@ -138,6 +140,7 @@ CREATE TABLE vid_serie_actor(
 
 CREATE TABLE vid_user_movie(
         isSeen   Bool NOT NULL ,
+        rate     Float ,
         id_movie Int NOT NULL ,
         id_user  Int NOT NULL ,
         PRIMARY KEY (id_movie ,id_user )
@@ -150,6 +153,7 @@ CREATE TABLE vid_user_movie(
 
 CREATE TABLE vid_user_serie(
         isFollowed Bool NOT NULL ,
+        rate       Float ,
         id_user    Int NOT NULL ,
         id_serie   Int NOT NULL ,
         PRIMARY KEY (id_user ,id_serie )
@@ -162,9 +166,10 @@ CREATE TABLE vid_user_serie(
 
 CREATE TABLE vid_user_episode(
         isSeen     Bool NOT NULL ,
-        id_serie   Int NOT NULL ,
+        rate       Float ,
         id_episode Int NOT NULL ,
-        PRIMARY KEY (id_serie ,id_episode )
+        id_user    Int NOT NULL ,
+        PRIMARY KEY (id_episode ,id_user )
 )ENGINE=InnoDB;
 
 ALTER TABLE vid_episode ADD CONSTRAINT FK_vid_episode_id_serie FOREIGN KEY (id_serie) REFERENCES vid_serie(id_serie);
@@ -180,5 +185,5 @@ ALTER TABLE vid_user_movie ADD CONSTRAINT FK_vid_user_movie_id_movie FOREIGN KEY
 ALTER TABLE vid_user_movie ADD CONSTRAINT FK_vid_user_movie_id_user FOREIGN KEY (id_user) REFERENCES vid_user(id_user);
 ALTER TABLE vid_user_serie ADD CONSTRAINT FK_vid_user_serie_id_user FOREIGN KEY (id_user) REFERENCES vid_user(id_user);
 ALTER TABLE vid_user_serie ADD CONSTRAINT FK_vid_user_serie_id_serie FOREIGN KEY (id_serie) REFERENCES vid_serie(id_serie);
-ALTER TABLE vid_user_episode ADD CONSTRAINT FK_vid_user_episode_id_serie FOREIGN KEY (id_serie) REFERENCES vid_serie(id_serie);
 ALTER TABLE vid_user_episode ADD CONSTRAINT FK_vid_user_episode_id_episode FOREIGN KEY (id_episode) REFERENCES vid_episode(id_episode);
+ALTER TABLE vid_user_episode ADD CONSTRAINT FK_vid_user_episode_id_user FOREIGN KEY (id_user) REFERENCES vid_user(id_user);
