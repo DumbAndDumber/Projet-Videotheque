@@ -9,15 +9,15 @@
 
 CREATE TABLE vid_user(
         id_user   int (11) Auto_increment  NOT NULL ,
-        username  Varchar (20) NOT NULL ,
-        password  Varchar (25) NOT NULL ,
-        email     Varchar (25) NOT NULL ,
-        lastname  Varchar (25) NOT NULL ,
-        firstname Varchar (25) NOT NULL ,
+        username  Varchar (255) NOT NULL ,
+        password  Varchar (255) NOT NULL ,
+        email     Varchar (255) NOT NULL ,
+        lastname  Varchar (255) NOT NULL ,
+        firstname Varchar (255) NOT NULL ,
         cp        Varchar (25) NOT NULL ,
-        address   Varchar (25) NOT NULL ,
-        country   Varchar (50) NOT NULL ,
-        phone     Varchar (20) NOT NULL ,
+        address   Varchar (255) NOT NULL ,
+        country   Varchar (255) NOT NULL ,
+        phone     Varchar (25) NOT NULL ,
         PRIMARY KEY (id_user ) ,
         UNIQUE (username )
 )ENGINE=InnoDB;
@@ -29,9 +29,9 @@ CREATE TABLE vid_user(
 
 CREATE TABLE vid_movie(
         id_movie     int (11) Auto_increment  NOT NULL ,
-        name         Varchar (25) NOT NULL ,
+        name         Varchar (255) NOT NULL ,
         release_date Date NOT NULL ,
-        rate         Int NOT NULL ,
+        rate         Float NOT NULL ,
         description  Text NOT NULL ,
         duration     Int NOT NULL ,
         PRIMARY KEY (id_movie )
@@ -43,10 +43,10 @@ CREATE TABLE vid_movie(
 #------------------------------------------------------------
 
 CREATE TABLE vid_actor(
-        id_actor int (11) Auto_increment  NOT NULL ,
-        name     Varchar (25) NOT NULL ,
-        lastname Varchar (25) NOT NULL ,
-        dob      Date NOT NULL ,
+        id_actor  int (11) Auto_increment  NOT NULL ,
+        lastname  Varchar (255) NOT NULL ,
+        firstname Varchar (255) NOT NULL ,
+        dob       Date NOT NULL ,
         PRIMARY KEY (id_actor )
 )ENGINE=InnoDB;
 
@@ -57,8 +57,8 @@ CREATE TABLE vid_actor(
 
 CREATE TABLE vid_director(
         id_director int (11) Auto_increment  NOT NULL ,
-        name        Varchar (25) NOT NULL ,
         lastname    Varchar (25) NOT NULL ,
+        firstname   Varchar (25) NOT NULL ,
         dob         Date NOT NULL ,
         PRIMARY KEY (id_director )
 )ENGINE=InnoDB;
@@ -70,9 +70,11 @@ CREATE TABLE vid_director(
 
 CREATE TABLE vid_episode(
         id_episode   int (11) Auto_increment  NOT NULL ,
-        name         Varchar (25) NOT NULL ,
+        name         Varchar (255) NOT NULL ,
         season       Int NOT NULL ,
+        number       Int NOT NULL ,
         release_date Date NOT NULL ,
+        description  Text NOT NULL ,
         id_serie     Int NOT NULL ,
         PRIMARY KEY (id_episode )
 )ENGINE=InnoDB;
@@ -83,9 +85,11 @@ CREATE TABLE vid_episode(
 #------------------------------------------------------------
 
 CREATE TABLE vid_serie(
-        id_serie int (11) Auto_increment  NOT NULL ,
-        name     Varchar (25) NOT NULL ,
-        rate     Int NOT NULL ,
+        id_serie    int (11) Auto_increment  NOT NULL ,
+        name        Varchar (255) NOT NULL ,
+        rate        Float NOT NULL ,
+        description Text NOT NULL ,
+        duration    Int ,
         PRIMARY KEY (id_serie )
 )ENGINE=InnoDB;
 
@@ -139,7 +143,7 @@ CREATE TABLE vid_serie_actor(
 #------------------------------------------------------------
 
 CREATE TABLE vid_user_movie(
-        isSeen   Bool NOT NULL ,
+        is_seen  Bool NOT NULL ,
         rate     Float ,
         id_movie Int NOT NULL ,
         id_user  Int NOT NULL ,
@@ -152,10 +156,10 @@ CREATE TABLE vid_user_movie(
 #------------------------------------------------------------
 
 CREATE TABLE vid_user_serie(
-        isFollowed Bool NOT NULL ,
-        rate       Float ,
-        id_user    Int NOT NULL ,
-        id_serie   Int NOT NULL ,
+        is_followed Bool NOT NULL ,
+        rate        Float ,
+        id_user     Int NOT NULL ,
+        id_serie    Int NOT NULL ,
         PRIMARY KEY (id_user ,id_serie )
 )ENGINE=InnoDB;
 
@@ -165,7 +169,7 @@ CREATE TABLE vid_user_serie(
 #------------------------------------------------------------
 
 CREATE TABLE vid_user_episode(
-        isSeen     Bool NOT NULL ,
+        is_seen    Bool NOT NULL ,
         rate       Float ,
         id_episode Int NOT NULL ,
         id_user    Int NOT NULL ,
