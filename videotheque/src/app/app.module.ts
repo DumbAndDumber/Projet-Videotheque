@@ -6,6 +6,17 @@ import { SeriesPage } from '../pages/series/series';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { GamesPage } from '../pages/games/games';
+import { SignInPage } from '../pages/signIn/signIn'
+import { SignUpPage } from '../pages/signUp/signUp'
+import { Api } from '../classes/api';
+import { LoginPage } from '../pages/login/login'
+
+// import { Actor } from '../classes/actor';
+// import { Director } from '../classes/director';
+// import { Episode } from '../classes/episode';
+// import { Movie } from '../classes/movie';
+// import { Serie } from '../classes/serie';
+import { User } from '../classes/user';
 
 @NgModule({
   declarations: [
@@ -15,6 +26,9 @@ import { GamesPage } from '../pages/games/games';
     HomePage,
     TabsPage,
     GamesPage,
+    SignInPage,
+    SignUpPage,
+    LoginPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -26,8 +40,11 @@ import { GamesPage } from '../pages/games/games';
     SeriesPage,
     HomePage,
     TabsPage,
-    GamesPage
+    GamesPage,
+    SignInPage,
+    SignUpPage,
+    LoginPage,
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Api, User]
 })
 export class AppModule {}
