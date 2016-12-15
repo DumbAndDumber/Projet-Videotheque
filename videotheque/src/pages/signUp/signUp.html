@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Inscription
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label fixed>Username</ion-label>
+      <ion-input type="text" [(ngModel)]="user.username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Lastname</ion-label>
+      <ion-input type="text" [(ngModel)]="user.lastname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Firstname</ion-label>
+      <ion-input type="text" [(ngModel)]="user.firstname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Address</ion-label>
+      <ion-input type="text" [(ngModel)]="user.address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Post Code</ion-label>
+      <ion-input type="text" [(ngModel)]="user.cp"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Country</ion-label>
+      <ion-input type="text" [(ngModel)]="user.country"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Phone</ion-label>
+      <ion-input type="number" [(ngModel)]="user.phone"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <button ion-button block (click)="signUp()">S'inscrire</button>
+
+</ion-content>
