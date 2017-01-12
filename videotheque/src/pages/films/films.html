@@ -8,4 +8,16 @@
 
 <ion-content padding>
 
+  <ion-card *ngFor="let movie of movies">
+  <img src="https://thumbs.dreamstime.com/z/trame-de-films-de-bande-de-film-2827484.jpg"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{movie.name}}
+      </ion-card-title>
+    <p>
+      {{movie.description}}
+    </p>
+  </ion-card-content>
+</ion-card>
+
 </ion-content>

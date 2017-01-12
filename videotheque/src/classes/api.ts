@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-
+import { Http, Headers, Response } from '@angular/http';
+import {Observable} from 'rxjs/Observable';
 import { User } from '../classes/user'
 
 @Injectable()
@@ -41,6 +41,10 @@ export class Api {
     this.http.get(this.apiUrl + "user/username/" + user.username, this.headers).subscribe(res => {
       console.log(res.json())
     })
+  }
+
+  getMovies(): Observable<Response>{
+    return this.http.get(this.apiUrl + "movie", this.headers)
   }
   
 }
