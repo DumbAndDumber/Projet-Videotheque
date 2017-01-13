@@ -8,8 +8,8 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let movie of movies">
-  <img src="https://thumbs.dreamstime.com/z/trame-de-films-de-bande-de-film-2827484.jpg"/>
+  <ion-card *ngFor="let movie of movies" (click)="getfilmDetail(movie)">
+  <img src="http://www.tuxboard.com/photos/2014/05/top-10-films-mafia.jpg"/>
   <ion-card-content>
     <ion-card-title>
       {{movie.name}}

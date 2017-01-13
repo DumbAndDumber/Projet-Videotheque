@@ -11,6 +11,7 @@ import { SignInPage } from '../pages/signIn/signIn'
 import { SignUpPage } from '../pages/signUp/signUp'
 import { Api } from '../classes/api';
 import { LoginPage } from '../pages/login/login'
+import { FilmDetailPage } from '../pages/filmDetail/filmDetail'
 
 // import { Actor } from '../classes/actor';
 // import { Director } from '../classes/director';
@@ -30,6 +31,7 @@ import { User } from '../classes/user';
     SignInPage,
     SignUpPage,
     LoginPage,
+    FilmDetailPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -45,6 +47,7 @@ import { User } from '../classes/user';
     SignInPage,
     SignUpPage,
     LoginPage,
+    FilmDetailPage,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Api, User, Storage]
 })
