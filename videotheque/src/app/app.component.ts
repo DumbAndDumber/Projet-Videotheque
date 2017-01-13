@@ -2,21 +2,30 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { SignInPage } from '../pages/signIn/signIn';
+import { Api } from '../classes/api'
+import { TabsPage } from '../pages/tabs/tabs'
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = SignInPage;
+  rootPage = TabsPage
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform,
+              public api: Api) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // TODO Check if already log
+      // console.log(this.api.log)
+      // if(this.api.log === true){
+      //   this.rootPage = HomePage
+      // }
+      // else{
+      //   this.rootPage = SignInPage
+      // }
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
   }
+
 }

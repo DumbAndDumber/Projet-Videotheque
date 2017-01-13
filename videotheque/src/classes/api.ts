@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import { Storage } from '@ionic/storage';
 import { User } from '../classes/user'
 
 @Injectable()
@@ -8,8 +9,9 @@ export class Api {
     apiUrl: string = "http://sarryromain.com/videotheque/arrestdb.php/vid_"
     headers = new Headers();
     _user: User
-
-  constructor(public http: Http) {
+    log: boolean
+  constructor(public http: Http,
+              public storage: Storage) {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Access-Control-Allow-Origin', '*');
   }
@@ -36,15 +38,24 @@ export class Api {
     })
   }
 
-  //TODO Faire les vérifications de conformité du username et password. 
+  //TODO Faire les vérifications de conformité du username et password.
   login(user){
     this.http.get(this.apiUrl + "user/username/" + user.username, this.headers).subscribe(res => {
       console.log(res.json())
+      this.storage.set("log", true)
     })
+  }
+
+  getTokenFromStorage(){
+    this.storage.get("log").then(res => this.log = res)
   }
 
   getMovies(): Observable<Response>{
     return this.http.get(this.apiUrl + "movie", this.headers)
   }
-  
+
+  getSeries(): Observable<Response>{
+    return this.http.get(this.apiUrl + "serie", this.headers)
+  }
+
 }
