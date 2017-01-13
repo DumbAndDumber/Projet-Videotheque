@@ -75,6 +75,7 @@ CREATE TABLE vid_episode(
         number       Int NOT NULL ,
         release_date Date NOT NULL ,
         description  Text NOT NULL ,
+        duration     Int ,
         id_serie     Int NOT NULL ,
         PRIMARY KEY (id_episode )
 )ENGINE=InnoDB;
@@ -89,7 +90,6 @@ CREATE TABLE vid_serie(
         name        Varchar (255) NOT NULL ,
         rate        Float NOT NULL ,
         description Text NOT NULL ,
-        duration    Int ,
         PRIMARY KEY (id_serie )
 )ENGINE=InnoDB;
 
