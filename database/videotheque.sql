@@ -30,10 +30,12 @@ CREATE TABLE vid_user(
 CREATE TABLE vid_movie(
         id_movie     int (11) Auto_increment  NOT NULL ,
         name         Varchar (255) NOT NULL ,
-        release_date Date NOT NULL ,
-        rate         Float NOT NULL ,
-        description  Text NOT NULL ,
-        duration     Int NOT NULL ,
+        release_date Date ,
+        rate         Float ,
+        description  Text ,
+        duration     Int ,
+        imdb_id      Varchar (25) NOT NULL ,
+        cover        Text NOT NULL ,
         PRIMARY KEY (id_movie )
 )ENGINE=InnoDB;
 
