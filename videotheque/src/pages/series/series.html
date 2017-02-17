@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let serie of series">
+  <ion-card *ngFor="let serie of series" (click)="goToSerieDetail(serie)">
     <img src="https://thumbs.dreamstime.com/z/trame-de-films-de-bande-de-film-2827484.jpg" />
     <ion-card-content>
       <ion-card-title>
