@@ -8,16 +8,30 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let movie of movies" (click)="getfilmDetail(movie)">
-  <img src="http://www.tuxboard.com/photos/2014/05/top-10-films-mafia.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      {{movie.name}}
+
+  <div class="" [hidden]="!isActive">
+    <ion-item>
+       <ion-label color="primary" floating>Nom de film</ion-label>
+       <ion-input [(ngModel)]="movieName"></ion-input>
+    </ion-item>
+    <button ion-button full (click)="getItems()">Rechercher</button>
+  </div>
+  <ion-icon class="icon" name="arrow-dropdown-circle" [hidden]="isActive" (click)="displaySearchBar()"></ion-icon>
+  <ion-icon class="icon" name="arrow-dropup-circle" [hidden]="!isActive" (click)="hideSearchBar()"></ion-icon>
+
+
+
+  <div *ngIf="isMovie == true">
+    <ion-card (click)="getfilmDetail(movie)"  *ngFor="let movie of movies.Search">
+      <ion-card-title class="title">
+        {{movie.Title}}
       </ion-card-title>
-    <p>
-      {{movie.description}}
-    </p>
-  </ion-card-content>
-</ion-card>
+    <img *ngIf="movie.Poster != 'N/A'" src="{{movie.Poster}}"/>
+    <img *ngIf="movie.Poster == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+    <ion-card-content>
+    </ion-card-content>
+    </ion-card>
+  </div>
+
 
 </ion-content>

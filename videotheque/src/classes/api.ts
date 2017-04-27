@@ -6,7 +6,7 @@ import { User } from '../classes/user'
 
 @Injectable()
 export class Api {
-    apiUrl: string = "http://sarryromain.com/videotheque/arrestdb.php/vid_"
+    apiUrl: string = "http://www.sarryromain.com/videotheque/scripts"
     headers = new Headers();
     _user: User
     log: boolean
@@ -40,7 +40,7 @@ export class Api {
 
   //TODO Faire les vérifications de conformité du username et password.
   login(user){
-    this.http.get(this.apiUrl + "user/username/" + user.username, this.headers).subscribe(res => {
+    this.http.get(this.apiUrl + "user/username/" + user.username).subscribe(res => {
       console.log(res.json())
       this.storage.set("log", true)
     })
@@ -50,8 +50,12 @@ export class Api {
     this.storage.get("log").then(res => this.log = res)
   }
 
-  getMovies(): Observable<Response>{
-    return this.http.get(this.apiUrl + "movie", this.headers)
+  getMovies(movieName): Observable<Response>{
+    return this.http.get(this.apiUrl + "/movie/search_movies.php?search=" +movieName + "&page=1", this.headers)
+  }
+
+  getMovieDetail(movieId): Observable<Response>{
+    return this.http.get(this.apiUrl + "/movie/get_movie_by_imdb_id.php?imdb_id=" + movieId , this.headers)
   }
 
   getSeries(): Observable<Response>{
