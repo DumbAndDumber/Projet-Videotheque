@@ -9,6 +9,7 @@
 	$episodes = json_decode($content)->Episodes;
 
 	$url = $arrestDbUrl . "vid_episode";
+	$episodesList = array();
 
 	foreach ($episodes as $key => $episode) {
 		$data = array(
@@ -16,7 +17,8 @@
 			"season" => $season,
 			"number" => $episode->Episode,
 			"release_date" => $episode->Released,
-			"imdb_id" => $episode->imdbId
+			"imdb_id" => $episode->imdbID,
+			"id_serie" => $id_serie
 		);
 		$options = array(
 		    'http' => array(
@@ -27,5 +29,10 @@
 		);
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
+
+		$content = file_get_contents($arrestDbUrl . "vid_episode/imdb_id/" . $episode->imdbID);
+		$episodesList[] = json_decode($content);
 	}
+
+	print_r(json_encode($episodesList));
 ?>

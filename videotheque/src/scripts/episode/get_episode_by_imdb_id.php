@@ -11,9 +11,11 @@
 
 	if(json_decode($content)[0]->duration == null) {
 		$duration = str_replace(" min", "", $episode->Runtime);
+		$url = $arrestDbUrl . "vid_episode/" . $id_episode;
 
 		$data = array(
-			"release_date" => $duration
+			"duration" => $duration,
+			"description" => $episode->Plot
 		);
 		$options = array(
 		    'http' => array(
