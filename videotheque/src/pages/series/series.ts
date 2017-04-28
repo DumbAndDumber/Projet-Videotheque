@@ -15,7 +15,7 @@ export class SeriesPage {
               public api: Api) { }
 
   ionViewDidLoad(){
-    this.api.getSeries().subscribe(res => this.series = res.json())
+    // this.api.getSeries().subscribe(res => this.series = res.json())
   }
 
   goToSerieDetail(serie){
