@@ -36,7 +36,8 @@
 	$result = file_get_contents($url, false, $context);
 
 	if (isset(json_decode($result)->error)) {
-		echo "Username or email is already used.";
+		http_response_code(409);
+		var_dump(http_response_code());
 	}
 	else {
 		print_r($result);
