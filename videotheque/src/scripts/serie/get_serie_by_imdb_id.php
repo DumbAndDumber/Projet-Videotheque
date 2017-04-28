@@ -10,7 +10,7 @@
 	$id_serie = json_decode($content)[0]->id;
 
 	$_GET["actors"] = str_replace(', ', ',', $serie->Actors);
-	$_GET["type"] = "serie";
+	$_GET["type"] = "series";
 	$_GET["id"] = $id_serie;
 
 	$url = $arrestDbUrl . "vid_serie/" . $id_serie;
@@ -37,9 +37,9 @@
 		$data = array(
 			"name" => $serie->Title,
 			"release_date" => $release_date,
-			"description" => $serie->Genre,
+			"description" => $serie->Plot,
 			"cover" => $serie->Poster,
-			"duration" => str_replace(" min", "", $serie->Runtime)
+			"seasons" => $serie->totalSeasons
 		);
 		$options = array(
 		    'http' => array(

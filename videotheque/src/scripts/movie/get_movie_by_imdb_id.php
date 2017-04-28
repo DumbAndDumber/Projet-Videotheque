@@ -37,7 +37,7 @@
 		$data = array(
 			"name" => $movie->Title,
 			"release_date" => $release_date,
-			"description" => $movie->Genre,
+			"description" => $movie->Plot,
 			"cover" => $movie->Poster,
 			"duration" => str_replace(" min", "", $movie->Runtime)
 		);
