@@ -37,9 +37,7 @@
 
 	if (isset(json_decode($result)->error)) {
 		http_response_code(409);
-		var_dump(http_response_code());
 	}
-	else {
-		print_r($result);
-	}
+	
+	print_r($result);
 ?>
