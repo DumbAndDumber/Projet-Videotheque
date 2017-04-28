@@ -4,7 +4,7 @@
 	$search = str_replace(" ", "+", $_GET["search"]);
 	$page = $_GET["page"];
 
-	$content = file_get_contents($omdbApiUrl . "?s=" . $search . "&page=" . $page . "&type=serie");
+	$content = file_get_contents($omdbApiUrl . "?s=" . $search . "&page=" . $page . "&type=series");
 	$series = json_decode($content)->Search;
 
 	$url = $arrestDbUrl . "vid_serie";
