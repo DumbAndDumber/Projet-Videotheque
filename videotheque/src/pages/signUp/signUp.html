@@ -50,6 +50,8 @@
 
   </ion-list>
 
+  <p *ngIf="isDuplicated">L'email que vous avez renseigné est deja utilisé</p>
+
   <button ion-button block (click)="signUp()">S'inscrire</button>
 
 </ion-content>

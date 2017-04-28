@@ -6,16 +6,27 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-card *ngFor="let serie of series" (click)="goToSerieDetail(serie)">
-    <img src="https://thumbs.dreamstime.com/z/trame-de-films-de-bande-de-film-2827484.jpg" />
-    <ion-card-content>
-      <ion-card-title>
-        {{serie.name}}
+<ion-content padding>
+
+  <div class="" [hidden]="!isActive">
+    <ion-item>
+       <ion-label color="primary" floating>Nom de Serie</ion-label>
+       <ion-input [(ngModel)]="serieName"></ion-input>
+    </ion-item>
+    <button ion-button full (click)="getItems()">Rechercher</button>
+  </div>
+  <ion-icon class="icon" name="arrow-dropdown-circle" [hidden]="isActive" (click)="displaySearchBar()"></ion-icon>
+  <ion-icon class="icon" name="arrow-dropup-circle" [hidden]="!isActive" (click)="hideSearchBar()"></ion-icon>
+
+  <div *ngIf="isSerie == true">
+    <ion-card *ngFor="let serie of series.Search" (click)="getSerieDetail(serie)">
+      <ion-card-title class="title">
+        {{serie.Title}}
       </ion-card-title>
-      <p>
-        {{serie.description}}
-      </p>
+    <img *ngIf="serie.Poster != 'N/A'" src="{{serie.Poster}}"/>
+    <img *ngIf="serie.Poster == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+    <ion-card-content>
     </ion-card-content>
-  </ion-card>
+    </ion-card>
+  </div>
 </ion-content>

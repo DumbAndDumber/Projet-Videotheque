@@ -1,4 +1,4 @@
-page-serie-detail {
+page-episode {
   .list-ios > .item-block:first-child {
     border-top: none;
 
@@ -9,5 +9,22 @@ page-serie-detail {
 
   .list-ios {
     margin: 10px 0 -4px 0;
+  }
+
+  .iconPlus{
+    position: absolute;
+    top: 12px;
+    right: 5px;
+  }
+
+  .title{
+    text-align: center;
+  }
+
+  .back-arrow{
+    font-size: 1.3em;
+    position: absolute;
+    left: 2%;
+    top: -2px;
   }
 }

@@ -46,6 +46,7 @@ export class FilmsPage {
 
   setTimeout(() => {
     loading.dismiss();
+    this.isActive = false;
     this.isMovie = true
   }, 3000);
 }
@@ -56,7 +57,6 @@ export class FilmsPage {
       let detail = res.json()
       this.navCtrl.push(FilmDetailPage, { movie : detail})
     })
-
   }
 
   displaySearchBar(){

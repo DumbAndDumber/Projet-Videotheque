@@ -23,24 +23,13 @@ export class Api {
   }
 
   postUser(user){
-    this.http.post(this.apiUrl + "user",{
-      username: user.username,
-      password: user.password,
-      email: user.email,
-      lastname: user.lastname,
-      firstname: user.firstname,
-      cp: user.cp,
-      address: user.address,
-      country: user.country,
-      phone: user.phone
-    }).subscribe(res => {
-      console.log(res)
-    })
+    console.log("USERRR", user)
+    return this.http.get(this.apiUrl + "/user/signin.php?username=" + user.username + "&password=" + user.password + "&email=" + user.email + "&lastname=" + user.lastname + "&firstname=" + user.firstname + "&cp=" + user.cp + "&address=" + user.address + "&country=" + user.country + "&phone=" + user.phone, this.headers)
   }
 
   //TODO Faire les vérifications de conformité du username et password.
   login(user){
-    this.http.get(this.apiUrl + "user/username/" + user.username).subscribe(res => {
+    this.http.get(this.apiUrl + "" + user.username).subscribe(res => {
       console.log(res.json())
       this.storage.set("log", true)
     })
@@ -58,8 +47,20 @@ export class Api {
     return this.http.get(this.apiUrl + "/movie/get_movie_by_imdb_id.php?imdb_id=" + movieId , this.headers)
   }
 
-  getSeries(): Observable<Response>{
-    return this.http.get(this.apiUrl + "serie", this.headers)
+  getSeries(serieName): Observable<Response>{
+    return this.http.get(this.apiUrl + "/serie/search_series.php?search=" + serieName + "&page=1", this.headers)
+  }
+
+  getSerieDetail(serieId): Observable<Response>{
+    return this.http.get(this.apiUrl + "/serie/get_serie_by_imdb_id.php?imdb_id=" + serieId , this.headers)
+  }
+
+  getSeason(serie,season): Observable<Response>{
+    return this.http.get(this.apiUrl + "/episode/get_season.php?imdb_id=" + serie.imdb_id + "&id_serie=" + serie.id + "&season=" + season, this.headers)
+  }
+
+  getEpisode(episode): Observable<Response>{
+    return this.http.get(this.apiUrl + "/episode/get_episode_by_imdb_id.php?imdb_id=" + episode[0].id, this.headers)
   }
 
 }

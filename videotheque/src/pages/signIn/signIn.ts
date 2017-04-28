@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 
 import { Api } from '../../classes/api';
 import { SignUpPage } from '../signUp/signUp'
@@ -12,8 +12,8 @@ import { LoginPage } from '../login/login'
 })
 export class SignInPage {
 
-  constructor(public navCtrl: NavController, public api: Api) {
-    
+  constructor(public navCtrl: NavController, public api: Api, public viewCtrl: ViewController) {
+
   }
 
   ionViewDidLoad(){}
@@ -24,6 +24,10 @@ export class SignInPage {
 
   goToLogin(){
     this.navCtrl.push(LoginPage)
+  }
+
+  back(){
+    this.viewCtrl.dismiss();
   }
 
 }

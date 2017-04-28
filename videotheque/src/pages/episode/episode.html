@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class="title">
+      <ion-icon (click)="back()" class="back-arrow" name="arrow-round-back"></ion-icon>
+      {{serie.name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let episode of episodes; let i of index">
+          <span (click)="getEpisodeDetail(episode)">
+            <h2>{{episode[0].name}}</h2>
+            <p>Saison{{episode[0].season}} Episode{{episode[0].number}}</p>
+            <ion-icon class="iconPlus" name="arrow-dropdown-circle"></ion-icon>
+          </span>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
