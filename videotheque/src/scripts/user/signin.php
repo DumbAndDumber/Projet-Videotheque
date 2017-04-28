@@ -35,5 +35,10 @@
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
 
-	print_r($result);
+	if (isset(json_decode($result)->error)) {
+		echo "Username or email is already used.";
+	}
+	else {
+		print_r($result);
+	}
 ?>
