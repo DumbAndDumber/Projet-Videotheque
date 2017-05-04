@@ -1,0 +1,2 @@
+make:
+	ionic serve
