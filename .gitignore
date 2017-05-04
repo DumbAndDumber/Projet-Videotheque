@@ -1,0 +1,7 @@
+/videotheque/.tmp
+/videotheque/.vscode
+/videotheque/hooks
+/videotheque/node_modules
+/videotheque/platforms
+/videotheque/plugins
+/videotheque/npm-debug.log
