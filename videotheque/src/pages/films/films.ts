@@ -9,9 +9,13 @@ import { FilmDetailPage } from '../filmDetail/filmDetail'
 })
 export class FilmsPage {
   movies: any
+  Movies = []
   movieName: any = ""
   isMovie = false
   isActive = true;
+  pager: number = 1
+  isEnd = false
+  hasData = true
   constructor(public navCtrl: NavController,
               public api: Api,
               public loadingCtrl: LoadingController) {
@@ -23,9 +27,29 @@ export class FilmsPage {
   ionViewDidEnter(){
   }
 
-  getMovies(){
-    this.api.getMovies(this.movieName).subscribe(res => {
+  getMovies(pager){
+    this.api.getMovies(this.movieName, pager).subscribe(res => {
+      this.hasData = true
       this.movies = res.json()
+      for(let movie of this.movies.Search){
+        this.Movies.push(movie)
+      }
+    },
+    err => {
+      this.hasData = false
+    })
+  }
+
+  getMoviesInfinite(pager){
+    this.api.getMovies(this.movieName, pager).subscribe(res => {
+      this.hasData = true
+      this.movies = res.json()
+      for(let movie of this.movies.Search){
+        this.Movies.push(movie)
+      }
+    },
+    err => {
+      this.isEnd = true
     })
   }
 
@@ -41,7 +65,10 @@ export class FilmsPage {
   loading.present();
 
   setTimeout(() => {
-    this.getMovies()
+    this.pager = 1
+    this.Movies = []
+    this.isEnd = false
+    this.getMovies(this.pager)
   }, 1000);
 
   setTimeout(() => {
@@ -70,5 +97,21 @@ export class FilmsPage {
     if(this.movieName.length > 1 ){
       return true
     }
+  }
+
+  doInfinite(e){
+    this.pager++
+
+    if(this.Movies.length == parseInt(this.movies.totalResults)){
+      this.getMoviesInfinite(this.pager)
+    }
+
+    setTimeout(() => {
+      this.getMoviesInfinite(this.pager)
+
+      console.log('Async operation has ended');
+      e.complete();
+    }, 1000);
+
   }
 }

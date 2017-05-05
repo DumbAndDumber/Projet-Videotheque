@@ -6,7 +6,9 @@ import { User } from '../classes/user'
 
 @Injectable()
 export class Api {
-    apiUrl: string = "http://www.sarryromain.com/videotheque/scripts"
+    //apiUrl: string = "http://www.sarryromain.com/videotheque/scripts"
+    localApiUrl: string = "http://127.0.0.1/projets/Projet-Videotheque/videotheque/src/scripts"
+    apiUrl = this.localApiUrl
     headers = new Headers();
     _user: User
     log: boolean
@@ -39,16 +41,16 @@ export class Api {
     this.storage.get("log").then(res => this.log = res)
   }
 
-  getMovies(movieName): Observable<Response>{
-    return this.http.get(this.apiUrl + "/movie/search_movies.php?search=" +movieName + "&page=1", this.headers)
+  getMovies(movieName, pager): Observable<Response>{
+    return this.http.get(this.apiUrl + "/movie/search_movies.php?search=" +movieName + "&page=" + pager, this.headers)
   }
 
   getMovieDetail(movieId): Observable<Response>{
     return this.http.get(this.apiUrl + "/movie/get_movie_by_imdb_id.php?imdb_id=" + movieId , this.headers)
   }
 
-  getSeries(serieName): Observable<Response>{
-    return this.http.get(this.apiUrl + "/serie/search_series.php?search=" + serieName + "&page=1", this.headers)
+  getSeries(serieName, pager): Observable<Response>{
+    return this.http.get(this.apiUrl + "/serie/search_series.php?search=" + serieName + "&page="+ pager, this.headers)
   }
 
   getSerieDetail(serieId): Observable<Response>{

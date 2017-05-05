@@ -10,10 +10,13 @@ import { SerieDetailPage } from '../serieDetail/serieDetail'
 })
 export class SeriesPage {
   series: any
+  Series= []
   isActive = true;
   isSerie = false
   serieName: any = ""
-
+  pager: number = 1
+  isEnd = false
+  hasData = true
   constructor(public navCtrl: NavController,
               public api: Api,
               public loadingCtrl: LoadingController,
@@ -22,10 +25,30 @@ export class SeriesPage {
   ionViewDidLoad(){
   }
 
-  getSeries(){
-    this.api.getSeries(this.serieName).subscribe(res => {
+  getSeries(pager){
+    this.api.getSeries(this.serieName, pager).subscribe(res => {
+      this.hasData = true
+      console.log(res.json())
       this.series = res.json()
-      console.log(this.series)
+      for(let serie of this.series.Search){
+        this.Series.push(serie)
+      }
+    },
+    err => {
+      this.hasData = false
+    })
+  }
+
+  getSeriesInfinite(pager){
+    this.api.getSeries(this.serieName, pager).subscribe(res => {
+      this.hasData = true
+      this.series = res.json()
+      for(let movie of this.series.Search){
+        this.Series.push(movie)
+      }
+    },
+    err => {
+      this.isEnd = true
     })
   }
 
@@ -37,7 +60,10 @@ export class SeriesPage {
   loading.present();
 
   setTimeout(() => {
-    this.getSeries()
+    this.pager = 1
+    this.Series = []
+    this.isEnd = false
+    this.getSeries(this.pager)
   }, 1000);
 
   setTimeout(() => {
@@ -69,6 +95,22 @@ export class SeriesPage {
     if(this.serieName.length > 1 ){
       return true
     }
+  }
+
+  doInfinite(e){
+    this.pager++
+
+    if(this.Series.length == parseInt(this.series.totalResults)){
+      this.getSeriesInfinite(this.pager)
+    }
+
+    setTimeout(() => {
+      this.getSeriesInfinite(this.pager)
+
+      console.log('Async operation has ended');
+      e.complete();
+    }, 1000);
+
   }
 
 }

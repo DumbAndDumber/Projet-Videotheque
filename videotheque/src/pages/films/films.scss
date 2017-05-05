@@ -7,4 +7,12 @@ page-films {
       margin-left: 46%;
       font-size: 2.2em;
   }
+
+  .truncate {
+    width: 166px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 }
