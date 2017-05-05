@@ -7,7 +7,9 @@
 	foreach ($actors as $key => $actor) {
 		$name = explode(" ", $actor);
 		$thisActorResult = getActorByFullName($name[0], $name[1]);
-		$actorsList[] = $thisActorResult;
+		if ($thisActorResult != null) {
+			$actorsList[] = $thisActorResult;
+		}
 	}
 
 	function getActorsByName($lLastname){
@@ -18,13 +20,19 @@
 
 	function getActorByFullName($lFirstname, $lLastname){
 		$getActorByFullName = getActorsByName($lLastname);
-		foreach ($getActorByFullName as $keyByFullName => $actorByFullName) {
-			if($actorByFullName->firstname == $lFirstname){
-				return $actorByFullName;
-				break;
+
+		if (!isset($getActorByFullName->error)) {
+			foreach ($getActorByFullName as $keyByFullName => $actorByFullName) {
+				if($actorByFullName->firstname == $lFirstname){
+					return $actorByFullName;
+					break;
+				}
 			}
 		}
 	}
 
+	if (sizeof($actorsList) == 0) {
+		http_response_code(404);
+	}
 	print_r(json_encode($actorsList));
 ?>

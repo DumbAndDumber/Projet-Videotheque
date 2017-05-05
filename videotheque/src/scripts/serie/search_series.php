@@ -5,25 +5,31 @@
 	$page = $_GET["page"];
 
 	$content = file_get_contents($omdbApiUrl . "?s=" . $search . "&page=" . $page . "&type=series");
-	$series = json_decode($content)->Search;
 
-	$url = $arrestDbUrl . "vid_serie";
+	if (!isset(json_decode($content)->Error)) {
+		$series = json_decode($content)->Search;
 
-	foreach ($series as $key => $serie) {
-		$data = array(
-			"name" => $serie->Title,
-			"cover" => $serie->Poster,
-			"imdb_id" => $serie->imdbID
-		);
-		$options = array(
-		    'http' => array(
-		        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-		        'method'  => 'POST',
-		        'content' => http_build_query($data)
-		    )
-		);
-		$context  = stream_context_create($options);
-		$result = file_get_contents($url, false, $context);
+		$url = $arrestDbUrl . "vid_serie";
+
+		foreach ($series as $key => $serie) {
+			$data = array(
+				"name" => $serie->Title,
+				"cover" => $serie->Poster,
+				"imdb_id" => $serie->imdbID
+			);
+			$options = array(
+			    'http' => array(
+			        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+			        'method'  => 'POST',
+			        'content' => http_build_query($data)
+			    )
+			);
+			$context  = stream_context_create($options);
+			$result = file_get_contents($url, false, $context);
+		}
+	}
+	else {
+		http_response_code(404);
 	}
 
 	print_r($content);

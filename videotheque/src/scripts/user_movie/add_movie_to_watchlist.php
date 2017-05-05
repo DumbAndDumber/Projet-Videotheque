@@ -20,5 +20,9 @@
 	$context  = stream_context_create($options);
 	$result = file_get_contents($url, false, $context);
 
+	if (isset(json_decode($result)->error)){
+		http_response_code(json_decode($result)->error->code);
+	}
+
 	print_r($result);
 ?>
