@@ -16,7 +16,7 @@ export class SignInPage {
 
   }
   ionViewWillEnter() {
-        this.addClass()
+    this.addClass()
   }
   ionViewWillUnload(){
     this.addClass()

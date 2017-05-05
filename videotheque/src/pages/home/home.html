@@ -7,18 +7,15 @@
 <ion-content>
   <h5></h5>
   <ion-list>
-    <ion-item>Films récents</ion-item>
+    <ion-item class="recentTitle" >Films récents</ion-item>
     <div>
     	<ion-slides pager>
 
-			<ion-slide *ngFor="let movie of recentMovies">
+			<ion-slide *ngFor="let movie of recentMovies" class="recentSlide">
 		    	<ion-thumbnail item-left>
-					<img *ngIf="movie.cover != 'N/A'" src="{{movie.cover}}"/>
-					<img *ngIf="movie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+					<img class="imgSlide" *ngIf="movie.cover != 'N/A'" src="{{movie.cover}}"/>
+					<img class="imgSlide" *ngIf="movie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
 				</ion-thumbnail>
-				<h2 class="truncate">{{movie.name}}</h2>
-				<p>{{movie.release_date}}</p>
-				<ion-icon class="rotate" item-right name="more"></ion-icon>
 			</ion-slide>
 
 		</ion-slides>
@@ -26,18 +23,15 @@
     <ion-item>
     </ion-item>
 
-    <ion-item>Series recentes</ion-item>
+    <ion-item class="recentTitle" >Series recentes</ion-item>
 	<div>
 	<ion-slides pager>
 
-		<ion-slide *ngFor="let serie of recentSeries">
+		<ion-slide *ngFor="let serie of recentSeries" class="recentSlide">
 			<ion-thumbnail item-left>
-				<img *ngIf="serie.cover != 'N/A'" src="{{serie.cover}}"/>
-				<img *ngIf="serie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+				<img class="imgSlide" *ngIf="serie.cover != 'N/A'" src="{{serie.cover}}"/>
+				<img class="imgSlide" *ngIf="serie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
 			</ion-thumbnail>
-			<h2 class="truncate">{{serie.name}}</h2>
-			<p>{{serie.release_date}}</p>
-			<ion-icon class="rotate" item-right name="more"></ion-icon>
 		</ion-slide>
 
 	</ion-slides>

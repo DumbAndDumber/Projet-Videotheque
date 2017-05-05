@@ -7,7 +7,12 @@ import { User } from '../classes/user'
 @Injectable()
 export class Api {
     //apiUrl: string = "http://www.sarryromain.com/videotheque/scripts"
-    localApiUrl: string = "http://localhost/Videotheque/videotheque/src/scripts"
+
+    //API ROMAIN
+    //localApiUrl: string = "http://localhost/Videotheque/videotheque/src/scripts"
+
+    //API SAM
+    localApiUrl: string = "http://localhost/projets/Projet-Videotheque/videotheque/src/scripts"
     apiUrl = this.localApiUrl
     headers = new Headers();
     _user: User
@@ -31,10 +36,7 @@ export class Api {
 
   //TODO Faire les vérifications de conformité du username et password.
   login(user){
-    this.http.get(this.apiUrl + "" + user.username).subscribe(res => {
-      console.log(res.json())
-      this.storage.set("log", true)
-    })
+    return this.http.get(this.apiUrl + "/user/get_by_email.php?email=" + user.email)
   }
 
   getTokenFromStorage(){

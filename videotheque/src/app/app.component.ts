@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, ModalController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import { Storage } from '@ionic/storage';
 
 import { Api } from '../classes/api'
 import { TabsPage } from '../pages/tabs/tabs'
@@ -16,9 +17,11 @@ export class MyApp {
 
   constructor(platform: Platform,
               public api: Api,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public storage: Storage) {
     platform.ready().then(() => {
       StatusBar.styleDefault();
+      this.getTokenFromStorage()
       Splashscreen.hide();
     });
   }
@@ -26,6 +29,16 @@ export class MyApp {
   presentSignInModal() {
    let profileModal = this.modalCtrl.create(SignInPage);
    profileModal.present();
+ }
+ //TODO 
+ // getTokenFromStorage(){
+ //   this.storage.get("logged").then(res => {
+ //     console.log(res)
+ //     if(res == true){
+ //
+ //     }
+ //   })
+
  }
 
 }

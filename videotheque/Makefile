@@ -6,3 +6,6 @@ make:
 #
 # make android:
 # 	sudo ionic build android
+
+# make npm:
+# 	npm install --save @ionic/storage
