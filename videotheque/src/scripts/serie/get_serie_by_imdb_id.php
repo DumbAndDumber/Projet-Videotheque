@@ -9,7 +9,7 @@
 	$content = file_get_contents($arrestDbUrl . "vid_serie/imdb_id/" . $imdb_id);
 	$id_serie = json_decode($content)[0]->id;
 
-	if ($serie->Error == null) {
+	if (!isset($serie->Error)) {
 		$_GET["actors"] = str_replace(', ', ',', $serie->Actors);
 		$_GET["type"] = "series";
 		$_GET["id"] = $id_serie;

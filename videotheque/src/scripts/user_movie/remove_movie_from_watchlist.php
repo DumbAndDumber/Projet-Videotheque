@@ -6,16 +6,18 @@
 
 	include("get_user_movie_id.php");
 
-	$url = $arrestDbUrl . "vid_user_movie/" . $id_user_movie;
+	if (isset($id_user_movie)) {
+		$url = $arrestDbUrl . "vid_user_movie/" . $id_user_movie;
 
-	$options = array(
-	    'http' => array(
-	        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-	        'method'  => 'DELETE'
-	    )
-	);
-	$context  = stream_context_create($options);
-	$result = file_get_contents($url, false, $context);
+		$options = array(
+		    'http' => array(
+		        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+		        'method'  => 'DELETE'
+		    )
+		);
+		$context  = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
 
-	print_r($result);
+		print_r($result);
+	}
 ?>
