@@ -1,6 +1,6 @@
 <?php
 
-$dsn = 'mysql://wrszi7_database:Azeqsd00@localhost/wrszi7_database';
+$dsn = 'mysql://root@localhost/wrszi7_database';
 $clients = [];
 
 /**

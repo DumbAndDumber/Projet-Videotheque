@@ -1,4 +1,4 @@
 <?php
-	$arrestDbUrl = "http://www.sarryromain.com/videotheque/arrestdb.php/";
+	$arrestDbUrl = "http://localhost/Videotheque/database/arrestdb.php/";
 	$omdbApiUrl =  "http://www.omdbapi.com/";
 ?>

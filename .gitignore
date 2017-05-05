@@ -7,3 +7,6 @@
 /videotheque/npm-debug.log
 /videotheque/www
 /videotheque/bower_component
+
+*.iml
+.idea
