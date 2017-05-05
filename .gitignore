@@ -6,7 +6,7 @@
 /videotheque/plugins
 /videotheque/npm-debug.log
 /videotheque/www
-/videotheque/bower_component
+/videotheque/bower_components
 
 *.iml
 .idea
