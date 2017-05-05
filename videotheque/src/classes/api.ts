@@ -62,7 +62,7 @@ export class Api {
   }
 
   getEpisode(episode): Observable<Response>{
-    return this.http.get(this.apiUrl + "/episode/get_episode_by_imdb_id.php?imdb_id=" + episode[0].id, this.headers)
+    return this.http.get(this.apiUrl + "/episode/get_episode_by_imdb_id.php?imdb_id=" + episode[0].imdb_id, this.headers)
   }
 
 }

@@ -43,8 +43,10 @@ export class SerieDetailPage {
   }
 
   presentSeasonModal() {
-    let modal = this.modalCtrl.create(EpisodePage, { season: this.episodes, serie: this.serie });
-    modal.present();
+    //Uncomment this to display a modal instead of root page
+    // let modal = this.modalCtrl.create(EpisodePage, { season: this.episodes, serie: this.serie });
+    // modal.present();
+    this.navCtrl.push(EpisodePage, { season: this.episodes, serie: this.serie });
   }
 
 

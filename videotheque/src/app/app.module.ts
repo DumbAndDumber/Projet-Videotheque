@@ -14,6 +14,7 @@ import { LoginPage } from '../pages/login/login'
 import { FilmDetailPage } from '../pages/filmDetail/filmDetail'
 import { SerieDetailPage } from '../pages/serieDetail/serieDetail'
 import { EpisodePage } from '../pages/episode/episode'
+import { EpisodeDetailPage } from '../pages/episodeDetail/episodeDetail'
 
 
 // import { Actor } from '../classes/actor';
@@ -37,6 +38,7 @@ import { User } from '../classes/user';
     FilmDetailPage,
     SerieDetailPage,
     EpisodePage,
+    EpisodeDetailPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -55,6 +57,7 @@ import { User } from '../classes/user';
     FilmDetailPage,
     SerieDetailPage,
     EpisodePage,
+    EpisodeDetailPage,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Api, User, Storage]
 })

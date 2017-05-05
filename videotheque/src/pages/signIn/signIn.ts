@@ -24,7 +24,6 @@ export class SignInPage {
 
   addClass(){
     let el = document.querySelector("page-signin > ion-header > ion-navbar >.back-button.disable-hover.bar-button.bar-button-md.back-button-md.bar-button-default.bar-button-default-md");
-    console.log(el)
     el.classList.add("show-back-button")
   }
 
