@@ -15,8 +15,25 @@ export class SignInPage {
   constructor(public navCtrl: NavController, public api: Api, public viewCtrl: ViewController) {
 
   }
+  ionViewWillEnter() {
+        this.addClass()
+  }
+  ionViewWillUnload(){
+    this.addClass()
+  }
 
-  ionViewDidLoad(){}
+  addClass(){
+    let el = document.querySelector("page-signin > ion-header > ion-navbar >.back-button.disable-hover.bar-button.bar-button-md.back-button-md.bar-button-default.bar-button-default-md");
+    console.log(el)
+    el.classList.add("show-back-button")
+  }
+
+  ionViewDidLoad(){
+
+  }
+  ionViewDidEnter(){
+    this.addClass()
+  }
 
   goToSignUp(){
     this.navCtrl.push(SignUpPage)

@@ -14,7 +14,7 @@
        <ion-label color="primary" floating>Nom de film</ion-label>
        <ion-input [(ngModel)]="movieName"></ion-input>
     </ion-item>
-    <button ion-button full (click)="getItems()">Rechercher</button>
+    <button ion-button full [disabled]="!checkLength()" (click)="getItems()">Rechercher</button>
   </div>
   <ion-icon class="icon" name="arrow-dropdown-circle" [hidden]="isActive" (click)="displaySearchBar()"></ion-icon>
   <ion-icon class="icon" name="arrow-dropup-circle" [hidden]="!isActive" (click)="hideSearchBar()"></ion-icon>

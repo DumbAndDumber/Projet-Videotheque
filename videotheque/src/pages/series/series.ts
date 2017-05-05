@@ -12,7 +12,7 @@ export class SeriesPage {
   series: any
   isActive = true;
   isSerie = false
-  serieName: any;
+  serieName: any = ""
 
   constructor(public navCtrl: NavController,
               public api: Api,
@@ -63,6 +63,12 @@ export class SeriesPage {
       let detail = res.json()
       this.navCtrl.push(SerieDetailPage, { serie : detail})
     })
+  }
+
+  checkLength(){
+    if(this.serieName.length > 1 ){
+      return true
+    }
   }
 
 }

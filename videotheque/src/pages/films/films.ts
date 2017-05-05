@@ -9,7 +9,7 @@ import { FilmDetailPage } from '../filmDetail/filmDetail'
 })
 export class FilmsPage {
   movies: any
-  movieName: any
+  movieName: any = ""
   isMovie = false
   isActive = true;
   constructor(public navCtrl: NavController,
@@ -64,5 +64,11 @@ export class FilmsPage {
   }
   hideSearchBar(){
     this.isActive = false
+  }
+
+  checkLength(){
+    if(this.movieName.length > 1 ){
+      return true
+    }
   }
 }
