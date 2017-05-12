@@ -6,14 +6,15 @@ import { User } from '../classes/user'
 
 @Injectable()
 export class Api {
-    //apiUrl: string = "http://www.sarryromain.com/videotheque/scripts"
+    apiUrl: string = "http://www.sarryromain.com/videotheque/scripts"
 
     //API ROMAIN
     //localApiUrl: string = "http://localhost/Videotheque/videotheque/src/scripts"
 
     //API SAM
-    localApiUrl: string = "http://localhost/projets/Projet-Videotheque/videotheque/src/scripts"
-    apiUrl = this.localApiUrl
+    //localApiUrl: string = "http://localhost/projets/Projet-Videotheque/videotheque/src/scripts"
+
+    //apiUrl = this.localApiUrl
     headers = new Headers();
     _user: User
     log: boolean

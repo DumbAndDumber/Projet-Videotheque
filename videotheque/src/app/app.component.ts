@@ -30,14 +30,9 @@ export class MyApp {
    let profileModal = this.modalCtrl.create(SignInPage);
    profileModal.present();
  }
- //TODO 
- // getTokenFromStorage(){
- //   this.storage.get("logged").then(res => {
- //     console.log(res)
- //     if(res == true){
- //
- //     }
- //   })
+ 
+ getTokenFromStorage(){
+
 
  }
 
