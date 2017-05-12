@@ -12,16 +12,11 @@
     	<ion-slides pager>
 
 			<ion-slide *ngFor="let movie of recentMovies" class="recentSlide">
-		    	<ion-thumbnail item-left>
 					<img class="imgSlide" *ngIf="movie.cover != 'N/A'" src="{{movie.cover}}"/>
 					<img class="imgSlide" *ngIf="movie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
-				</ion-thumbnail>
 			</ion-slide>
-
 		</ion-slides>
     </div>
-    <ion-item>
-    </ion-item>
 
     <ion-item class="recentTitle" >Series recentes</ion-item>
 	<div>

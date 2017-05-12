@@ -25,9 +25,10 @@ export class LoginPage {
   login(){
     this.api.login(this.user).subscribe(res => {
       this.me = res.json()
+      console.log(this.me)
       if(this.me[0].password == this.user.password){
           console.log(this.user.password)
-          this.storage.set("logged", true)
+          this.storage.set("id", this.me[0].id_user)
           this.navCtrl.push(TabsPage)
       }
     })
