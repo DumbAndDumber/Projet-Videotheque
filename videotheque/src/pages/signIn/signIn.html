@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header *ngIf="this.api.currentUser == null">
   <ion-navbar>
     <ion-title>
       Connexion - Inscription
@@ -6,8 +6,50 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-header *ngIf="this.api.currentUser != null">
+  <ion-navbar>
+    <ion-title>
+      Profil
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="this.api.currentUser == null">
   <button ion-button block (click)="goToLogin()">Connexion</button>
   <button ion-button block (click)="goToSignUp()">Inscription</button>
 
+</ion-content>
+
+<ion-content *ngIf="this.api.currentUser != null">
+
+  <div class="background">
+    <img class="profilPicture" src="http://130.104.253.19/~ced/site-cental-equipe/claude.png" alt="">
+  </div>
+  <p class="username">
+    {{this.api.currentUser[0].username}}
+  </p>
+  <p class="name">
+    {{this.api.currentUser[0].firstname}} {{this.api.currentUser[0].lastname}}
+  </p>
+  <p class="email">
+    {{this.api.currentUser[0].email}}
+  </p>
+  <p class="phone">
+    {{this.api.currentUser[0].address}} {{this.api.currentUser[0].cp}} {{this.api.currentUser[0].country}}
+  </p>
+
+  <ion-list no-lines>
+    <button ion-item>
+      Editer le profil
+      <ion-icon item-right name="arrow-dropright-circle"></ion-icon>
+    </button>
+    <button ion-item>
+      Paramètres
+      <ion-icon item-right name="arrow-dropright-circle"></ion-icon>
+    </button>
+    <button ion-item (click)="logout()">
+      Deconnexion
+      <ion-icon item-right name="log-out"></ion-icon>
+    </button>
+  </ion-list>
 </ion-content>

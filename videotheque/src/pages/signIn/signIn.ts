@@ -5,6 +5,8 @@ import { NavController, ViewController } from 'ionic-angular';
 import { Api } from '../../classes/api';
 import { SignUpPage } from '../signUp/signUp'
 import { LoginPage } from '../login/login'
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-signIn',
@@ -12,8 +14,10 @@ import { LoginPage } from '../login/login'
 })
 export class SignInPage {
 
-  constructor(public navCtrl: NavController, public api: Api, public viewCtrl: ViewController) {
-
+  constructor(public navCtrl: NavController,
+              public api: Api,
+              public viewCtrl: ViewController,
+              public storage: Storage){
   }
   ionViewWillEnter() {
     this.addClass()
@@ -44,6 +48,11 @@ export class SignInPage {
 
   back(){
     this.viewCtrl.dismiss();
+  }
+
+  logout(){
+    this.storage.remove("id");
+    location.reload()
   }
 
 }

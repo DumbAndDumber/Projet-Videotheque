@@ -30,6 +30,8 @@ export class LoginPage {
           console.log(this.user.password)
           this.storage.set("id", this.me[0].id_user)
           this.navCtrl.push(TabsPage)
+          this.api.getTokenFromStorage()
+          location.reload()
       }
     })
   }

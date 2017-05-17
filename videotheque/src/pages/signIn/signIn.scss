@@ -1,3 +1,68 @@
-page-films {
+page-signIn {
+  /*** PROFIL ***/
 
+  .background{
+    background-color: #ADCBC9;
+    height: 50%;
+    width: 84%;
+    position: relative;
+    border-radius: 80%;
+    top: -26%;
+    left: 8%;
+    overflow: hidden;
+  }
+
+  .profilPicture{
+    position: absolute;
+    top: 131px;
+    height: 70%;
+    left: 16%;
+  }
+
+  .username{
+    position: fixed;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .item-md {
+    position: relative;
+    padding-right: 0;
+    padding-left: 5px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: none;
+    color: $writing;
+    background-color: $background;
+    box-shadow: none;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .name{
+    position: fixed;
+    top: 36%;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .email{
+    position: fixed;
+    top: 41%;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .phone{
+    position: fixed;
+    top: 45%;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+  }
 }

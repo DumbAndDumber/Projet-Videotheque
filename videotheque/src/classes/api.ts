@@ -17,11 +17,13 @@ export class Api {
     //apiUrl = this.localApiUrl
     headers = new Headers();
     _user: User
-    log: boolean
+    meId: any
+    currentUser: any
   constructor(public http: Http,
               public storage: Storage) {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Access-Control-Allow-Origin', '*');
+    this.getTokenFromStorage()
   }
 
   getUsers(){
@@ -35,14 +37,32 @@ export class Api {
     return this.http.get(this.apiUrl + "/user/signin.php?username=" + user.username + "&password=" + user.password + "&email=" + user.email + "&lastname=" + user.lastname + "&firstname=" + user.firstname + "&cp=" + user.cp + "&address=" + user.address + "&country=" + user.country + "&phone=" + user.phone, this.headers)
   }
 
-  //TODO Faire les vérifications de conformité du username et password.
   login(user){
     return this.http.get(this.apiUrl + "/user/get_by_email.php?email=" + user.email)
   }
 
   getTokenFromStorage(){
-    this.storage.get("log").then(res => this.log = res)
+    this.storage.get("id").then(res => {
+      this.meId = res
+      this.getCurrentUser(this.meId).subscribe(res => {
+        this.currentUser = res.json()
+        console.info("L'utilisateur actuel ::", this.currentUser)
+      },
+      err => {
+        this.currentUser = null
+        console.error("Pas de current user", this.currentUser)
+      })
+    },
+    err =>{
+      this.meId = null
+      console.error("Pas de meId dans le storage", this.meId)
+    })
   }
+
+  getCurrentUser(id): Observable<Response>{
+    return this.http.get(this.apiUrl + "/user/get_by_id.php?id=" + id)
+  }
+
 
   getMovies(movieName, pager): Observable<Response>{
     return this.http.get(this.apiUrl + "/movie/search_movies.php?search=" +movieName + "&page=" + pager, this.headers)

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Episode } from '../../classes/episode'
 
 /*
   Generated class for the EpisodeDetail page.
