@@ -135,3 +135,20 @@ $background: #1E3A61;
   font-weight: bold;
   font-size: 16px;
 }
+
+.greyed {
+    color: #999;
+}
+
+.search-bar {
+    display: inline-flex;
+    width: 100%;
+}
+
+.search-bar-icon {
+    margin-left: 0 !important;   
+}
+
+.search-bar-icon:before {
+    vertical-align: middle;
+}

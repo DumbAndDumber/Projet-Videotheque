@@ -33,7 +33,6 @@ export class Api {
   }
 
   postUser(user){
-    console.log("USERRR", user)
     return this.http.get(this.apiUrl + "/user/signin.php?username=" + user.username + "&password=" + user.password + "&email=" + user.email + "&lastname=" + user.lastname + "&firstname=" + user.firstname + "&cp=" + user.cp + "&address=" + user.address + "&country=" + user.country + "&phone=" + user.phone, this.headers)
   }
 
@@ -46,6 +45,7 @@ export class Api {
       this.meId = res
       this.getCurrentUser(this.meId).subscribe(res => {
         this.currentUser = res.json()
+        this.currentUser = this.currentUser[0]
         console.info("L'utilisateur actuel ::", this.currentUser)
       },
       err => {
@@ -65,11 +65,16 @@ export class Api {
 
 
   getMovies(movieName, pager): Observable<Response>{
-    return this.http.get(this.apiUrl + "/movie/search_movies.php?search=" +movieName + "&page=" + pager, this.headers)
+    return this.http.get(this.apiUrl + "/movie/search_movies.php?search=" + movieName + "&page=" + pager, this.headers)
   }
 
   getMovieDetail(movieId): Observable<Response>{
     return this.http.get(this.apiUrl + "/movie/get_movie_by_imdb_id.php?imdb_id=" + movieId , this.headers)
+  }
+
+  getUserMovieWatchlist(){
+    this.getTokenFromStorage()
+    return this.http.get(this.apiUrl + "/user_movie/get_user_movie_watchlist.php?id_user=" + this.currentUser.id_user, this.headers)
   }
 
   getRecentMovies(): Observable<Response>{

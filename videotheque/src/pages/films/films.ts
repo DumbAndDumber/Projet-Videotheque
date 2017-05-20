@@ -10,19 +10,23 @@ import { FilmDetailPage } from '../filmDetail/filmDetail'
 export class FilmsPage {
   movies: any
   Movies = []
+  userMovies = []
   movieName: any = ""
   isMovie = false
   isActive = true;
   pager: number = 1
   isEnd = false
   hasData = true
+  hasWatchlist = false
   constructor(public navCtrl: NavController,
               public api: Api,
               public loadingCtrl: LoadingController) {
               }
 
 
-  ionViewDidLoad(){ }
+  ionViewDidLoad(){
+    this.getUserMovieWatchlist()
+  }
 
   ionViewDidEnter(){
   }
@@ -83,6 +87,21 @@ export class FilmsPage {
     this.api.getMovieDetail(movie.imdbID).subscribe(res => {
       let detail = res.json()
       this.navCtrl.push(FilmDetailPage, { movie : detail})
+    })
+  }
+
+  getUserMovieWatchlist() {
+    this.hasData = false
+    this.api.getUserMovieWatchlist().subscribe(res => {
+      this.movies = res.json()
+      for(let userMovie of this.movies){
+        if (userMovie.is_seen == 0)
+          this.userMovies.push(userMovie)
+      }
+      this.hasWatchlist = true
+    },
+    err => {
+      this.hasWatchlist = false
     })
   }
 

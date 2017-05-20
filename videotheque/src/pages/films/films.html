@@ -9,7 +9,7 @@
 <ion-content padding>
 
 
-  <div class="" [hidden]="!isActive">
+<!--   <div class="" [hidden]="!isActive">
     <ion-item>
        <ion-label color="primary" floating>Nom de film</ion-label>
        <ion-input [(ngModel)]="movieName"></ion-input>
@@ -17,11 +17,20 @@
     <button ion-button full [disabled]="!checkLength()" (click)="getItems()">Rechercher</button>
   </div>
   <ion-icon class="icon" name="arrow-dropdown-circle" [hidden]="isActive" (click)="displaySearchBar()"></ion-icon>
-  <ion-icon class="icon" name="arrow-dropup-circle" [hidden]="!isActive" (click)="hideSearchBar()"></ion-icon>
+  <ion-icon class="icon" name="arrow-dropup-circle" [hidden]="!isActive" (click)="hideSearchBar()"></ion-icon> -->
 
-  <p *ngIf="hasData == false" class="error">Aucun film trouvé</p>
-  <ion-list *ngIf="isMovie == true">
-    <ion-item (click)="getfilmDetail(movie)"  *ngFor="let movie of Movies">
+  <div class="search-bar">
+    <ion-item class="search-bar-item">
+      <ion-input placeholder="Rechercher un film" [(ngModel)]="movieName"></ion-input>
+    </ion-item>
+    <ion-icon class="icon search-bar-icon" name="search" [hidden]="!checkLength()" (click)="getItems()"></ion-icon>
+    <ion-icon class="icon search-bar-icon greyed" name="search" [hidden]="checkLength()"></ion-icon>
+  </div>
+
+  <p *ngIf="hasData == false && hasWatchlist == false" class="error">Aucun film trouvé</p>
+
+  <ion-list *ngIf="isMovie == true && hasData == true">
+    <ion-item (click)="getfilmDetail(movie)" *ngFor="let movie of Movies">
       <ion-thumbnail item-left>
         <img *ngIf="movie.Poster != 'N/A'" src="{{movie.Poster}}"/>
         <img *ngIf="movie.Poster == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
@@ -32,12 +41,24 @@
     </ion-item>
   </ion-list>
 
-  <p class="more" *ngIf="isEnd === true">No more data</p>
-   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <p class="more" *ngIf="isEnd === true && hasData == true">No more data</p>
+  <ion-infinite-scroll *ngIf="hasData == true" (ionInfinite)="doInfinite($event)">
      <ion-infinite-scroll-content
       loadingSpinner="bubbles"
       loadingText="Loading more data...">
     </ion-infinite-scroll-content>
-   </ion-infinite-scroll>
+  </ion-infinite-scroll>
+
+  <ion-list *ngIf="hasWatchlist == true">
+    <ion-item *ngFor="let userMovie of userMovies">
+      <ion-thumbnail item-left>
+        <img *ngIf="userMovie.movie.cover != 'N/A'" src="{{userMovie.movie.cover}}"/>
+        <img *ngIf="userMovie.movie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+      </ion-thumbnail>
+      <h2 class="truncate">{{userMovie.movie.name}}</h2>
+      <p>{{userMovie.movie.release_date}}</p>
+      <ion-icon class="rotate" item-right name="more"></ion-icon>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
