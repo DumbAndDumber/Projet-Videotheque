@@ -4,7 +4,6 @@ page-films {
   }
 
   .icon{
-      margin-left: 46%;
       font-size: 2.2em;
   }
 
@@ -13,6 +12,20 @@ page-films {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .itemContent{
+    display: inline-block;
+  }
+
+  .check{
+    display: inline-flex;
+  }
+
+  .close{
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
   }
 
 }
