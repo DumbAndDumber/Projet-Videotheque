@@ -93,11 +93,12 @@ export class FilmsPage {
   getUserMovieWatchlist() {
     this.hasData = false
     this.api.getUserMovieWatchlist().subscribe(res => {
-      this.movies = res.json()
-      for(let userMovie of this.movies){
-        if (userMovie.is_seen == 0)
-          this.userMovies.push(userMovie)
-      }
+      // this.movies = res.json()
+      // for(let userMovie of this.movies){
+      //   if (userMovie.is_seen == 0)
+      //     this.userMovies.push(userMovie)
+      // }
+      this.userMovies = res.json()
       this.hasWatchlist = true
     },
     err => {
