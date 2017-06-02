@@ -4,7 +4,7 @@
 	$search = str_replace(" ", "+", $_GET["search"]);
 	$page = $_GET["page"];
 
-	$content = file_get_contents($omdbApiUrl . "?s=" . $search . "&page=" . $page . "&type=series");
+	$content = file_get_contents($omdbApiUrl . "s=" . $search . "&page=" . $page . "&type=series");
 
 	if (!isset(json_decode($content)->Error)) {
 		$series = json_decode($content)->Search;

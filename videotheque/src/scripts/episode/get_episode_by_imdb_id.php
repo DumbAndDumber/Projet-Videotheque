@@ -3,7 +3,7 @@
 
 	$imdb_id = $_GET["imdb_id"];
 
-	$content = file_get_contents($omdbApiUrl . "?i=" . $imdb_id);
+	$content = file_get_contents($omdbApiUrl . "i=" . $imdb_id);
 	$episode = json_decode($content);
 
 	$content = file_get_contents($arrestDbUrl . "vid_episode/imdb_id/" . $imdb_id);

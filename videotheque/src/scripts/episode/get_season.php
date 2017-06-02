@@ -5,7 +5,7 @@
 	$id_serie = $_GET["id_serie"];
 	$season = $_GET["season"];
 
-	$content = file_get_contents($omdbApiUrl . "?i=" . $imdb_id . "&season=" . $season);
+	$content = file_get_contents($omdbApiUrl . "i=" . $imdb_id . "&season=" . $season);
 
 	if ($content == null) {
 		http_response_code(404);

@@ -4,7 +4,7 @@
 	$search = str_replace(" ", "+", $_GET["search"]);
 	$page = $_GET["page"];
 
-	$content = file_get_contents($omdbApiUrl . "?s=" . $search . "&page=" . $page . "&type=movie");
+	$content = file_get_contents($omdbApiUrl . "s=" . $search . "&page=" . $page . "&type=movie");
 
 	if (!isset(json_decode($content)->Error)) {
 		$movies = json_decode($content)->Search;
