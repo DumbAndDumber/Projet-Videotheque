@@ -1,8 +1,10 @@
 <?php
 	include("../parameters.php");
 
-	$id_movie = $_GET["id_movie"];
 	$id_user = $_GET["id_user"];
+
+	$content = file_get_contents($scriptsUrl . "/movie/get_movie_by_imdb_id.php?imdb_id=" . $_GET["id_movie"]);
+	$id_movie = json_decode($content)->id;
 
 	$url = $arrestDbUrl . "vid_user_movie";
 

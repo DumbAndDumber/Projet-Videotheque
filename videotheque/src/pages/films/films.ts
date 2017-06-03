@@ -129,6 +129,7 @@ export class FilmsPage {
     this.isSearching = false
     this.movieName = ""
     this.movies = {}
+    this.getUserMovieWatchlist()
   }
 
   addToWatchList(movie){
