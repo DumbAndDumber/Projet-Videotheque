@@ -147,9 +147,32 @@ $background: #1E3A61;
 
 .search-bar-icon {
     margin-left: 0 !important;
-    margin-top: 5px;  
+    margin-top: 5px;
 }
 
-.search-bar-icon:before {
-    vertical-align: middle;
+.watched p {
+  font-size: 1em !important;
+}
+
+.watched p ion-icon {
+  font-size: 100% !important;
+}
+
+.watched ion-icon {
+  font-size: 1em !important;
+}
+
+.table {
+  display: table !important;
+}
+
+.table-cell {
+  display: table-cell !important;
+  vertical-align: middle;
+}
+
+.watchlist .label-md {
+  display: table;
+  margin-right: 0px;
+  width: 100%;
 }

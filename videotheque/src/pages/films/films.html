@@ -40,8 +40,8 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
-  <ion-list *ngIf="hasWatchlist == true && isSearching == false">
-    <h2>Watch list</h2>
+  <ion-list *ngIf="hasWatchlist == true && isSearching == false" class="watchlist">
+    <h2>Watchlist</h2>
     <ion-item-sliding #item *ngFor="let userMovie of userMovies">
     <ion-item-options side="right">
       <button ion-button color="danger"> <ion-icon name="trash"></ion-icon></button>
@@ -53,11 +53,15 @@
         <img *ngIf="userMovie.movie.cover != 'N/A'" src="{{userMovie.movie.cover}}"/>
         <img *ngIf="userMovie.movie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
       </ion-thumbnail>
-      <div class="itemContent">
+      <div class="itemContent table-cell">
         <h2 class="truncate">{{userMovie.movie.name}}</h2>
         <p>{{userMovie.movie.release_date}}</p>
       </div>
-      <ion-icon *ngIf="userMovie.is_seen == 1" class="check" name="checkmark"></ion-icon>
+      <div *ngIf="userMovie.is_seen == 1"  class="watched greyed table-cell">
+        <ion-icon *ngIf="userMovie.rate == null" name="checkmark"></ion-icon>
+
+        <p *ngIf="userMovie.rate != null">{{userMovie.rate}}<ion-icon name="star-outline"></ion-icon></p>
+      </div>
     </ion-item>
     </ion-item-sliding>
   </ion-list>
