@@ -130,4 +130,13 @@ export class FilmsPage {
     this.movieName = ""
     this.movies = {}
   }
+
+  addToWatchList(movie){
+    this.api.addToWatchList(movie).subscribe(res => {
+      console.log(res.json())
+    },
+    err=> {
+      console.error(err)
+    })
+  }
 }
