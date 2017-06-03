@@ -21,15 +21,20 @@
   <p *ngIf="hasData == false && hasWatchlist == false " class="error">Aucun film trouvé</p>
 
   <ion-list *ngIf="isMovie == true && hasData == true && isSearching == true">
-    <ion-item (click)="getfilmDetail(movie)" *ngFor="let movie of Movies">
-      <ion-thumbnail item-left>
-        <img *ngIf="movie.Poster != 'N/A'" src="{{movie.Poster}}"/>
-        <img *ngIf="movie.Poster == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
-      </ion-thumbnail>
-      <h2 class="truncate">{{movie.Title}}</h2>
-      <p>{{movie.Type}} • {{movie.Year}}</p>
-      <ion-icon class="rotate" item-right name="more"></ion-icon>
-    </ion-item>
+    <ion-item-sliding #item1 *ngFor="let movie of Movies">
+      <ion-item-options side="right">
+        <button ion-button (click)="addToWatchList(movie)">A Voir</button>
+      </ion-item-options>
+      <ion-item (click)="getfilmDetail(movie)" >
+        <ion-thumbnail item-left>
+          <img *ngIf="movie.Poster != 'N/A'" src="{{movie.Poster}}"/>
+          <img *ngIf="movie.Poster == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+        </ion-thumbnail>
+        <h2 class="truncate">{{movie.Title}}</h2>
+        <p>{{movie.Type}} • {{movie.Year}}</p>
+        <ion-icon class="rotate" item-right name="more"></ion-icon>
+      </ion-item>
+    </ion-item-sliding>
   </ion-list>
 
   <p class="more" *ngIf="isEnd === true && hasData == true && isSearching == true">No more data</p>

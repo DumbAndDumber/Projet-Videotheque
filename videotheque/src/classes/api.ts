@@ -101,4 +101,11 @@ export class Api {
     return this.http.get(this.apiUrl + "/episode/get_episode_by_imdb_id.php?imdb_id=" + episode[0].imdb_id, this.headers)
   }
 
+  addToWatchList(movie): Observable<Response>{
+    console.log(movie)
+    console.log(this.currentUser)
+    console.log(this.meId)
+    return this.http.get(this.apiUrl + "/user_movie/add_movie_to_watchlist.php?id_user=" + this.meId + "&id_movie=" + movie.imdbID, this.headers)
+  }
+
 }

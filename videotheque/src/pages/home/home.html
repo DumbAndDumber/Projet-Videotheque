@@ -12,8 +12,10 @@
     	<ion-slides pager>
 
 			<ion-slide *ngFor="let movie of recentMovies" class="recentSlide">
-					<img class="imgSlide" *ngIf="movie.cover != 'N/A'" src="{{movie.cover}}"/>
+        <div class="">
+          <img class="imgSlide" *ngIf="movie.cover != 'N/A'" src="{{movie.cover}}"/>
 					<img class="imgSlide" *ngIf="movie.cover == 'N/A'" src="https://image.freepik.com/vecteurs-libre/cinema-retro-chapiteau_23-2147508018.jpg"/>
+        </div>
 			</ion-slide>
 		</ion-slides>
     </div>
