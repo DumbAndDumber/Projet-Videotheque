@@ -3,6 +3,7 @@
 
 	$id_movie = $_GET["id_movie"];
 	$id_user = $_GET["id_user"];
+	$is_seen = $_GET["is_seen"];
 
 	$rate = $_GET["rate"];
 
@@ -12,7 +13,7 @@
 		$url = $arrestDbUrl . "vid_user_movie/" . $id_user_movie;
 
 		$data = array(
-			"is_seen" => 1,
+			"is_seen" => $is_seen,
 			"rate" => $rate
 		);
 		$options = array(
