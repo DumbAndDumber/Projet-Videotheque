@@ -110,6 +110,7 @@ export class Api {
   }
 
   watchedMovieFromWatchlist(movie, rate): Observable<Response>{
-    return this.http.get(this.apiUrl + "/user_movie/watched_user_movie.php?id_user=" + this.meId + "&id_movie=" + movie.id_movie + "&rate=" + rate, this.headers)
+    return this.http.get(this.apiUrl + "/user_movie/watched_user_movie.php?id_user=" + this.meId + "&id_movie=" +
+        movie.id_movie + "&rate=" + rate + "&is_seen=" + movie.is_seen, this.headers)
   }
 }

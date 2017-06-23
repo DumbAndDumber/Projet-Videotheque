@@ -18,7 +18,6 @@ export class FilmsPage {
   hasData = true
   hasWatchlist = false
   isSearching = false
-  watched = false
   constructor(public navCtrl: NavController,
               public api: Api,
               public loadingCtrl: LoadingController,
@@ -86,7 +85,6 @@ export class FilmsPage {
 }
 
   getfilmDetail(movie){
-    console.log(movie)
     this.api.getMovieDetail(movie.imdbID).subscribe(res => {
       let detail = res.json()
       this.navCtrl.push(FilmDetailPage, { movie : detail})
@@ -97,7 +95,6 @@ export class FilmsPage {
     this.hasData = false
     this.api.getUserMovieWatchlist().subscribe(res => {
       this.userMovies = res.json()
-      console.log(this.userMovies)
       this.hasWatchlist = true
     },
     err => {
@@ -120,8 +117,6 @@ export class FilmsPage {
 
     setTimeout(() => {
       this.getMoviesInfinite(this.pager)
-
-      console.log('Async operation has ended');
       e.complete();
     }, 1000);
 
@@ -136,7 +131,6 @@ export class FilmsPage {
 
   addToWatchList(movie){
     this.api.addToWatchList(movie).subscribe(res => {
-      console.log(res.json())
           this.isSearching = false
           this.movieName = ""
           this.movies = {}
@@ -158,9 +152,20 @@ export class FilmsPage {
   }
 
   watchedMovie(movie, rate){
+    movie.is_seen = 1;
     this.api.watchedMovieFromWatchlist(movie, rate).subscribe(res => {
-          this.watched = true
       this.getUserMovieWatchlist()
+        },
+        err => {
+          console.error(err)
+        })
+  }
+
+  unWatchedMovie(movie, rate){
+    movie.is_seen = 0
+    movie.rate = null
+    this.api.watchedMovieFromWatchlist(movie, rate=null).subscribe(res => {
+          this.getUserMovieWatchlist()
         },
         err => {
           console.error(err)
@@ -172,7 +177,7 @@ export class FilmsPage {
       title: 'Notez ce film !!',
       inputs: [
         {
-          name: 'Note',
+          name: 'rate',
           placeholder: '9.5',
           type: 'number'
         },
@@ -182,7 +187,6 @@ export class FilmsPage {
           text: 'Cancel',
           role: 'cancel',
           handler: data => {
-            console.log('Cancel clicked');
           }
         },
         {
