@@ -49,9 +49,9 @@
     <h2>Watchlist</h2>
     <ion-item-sliding #item *ngFor="let userMovie of userMovies">
     <ion-item-options side="right">
-      <button ion-button color="danger"> <ion-icon name="trash"></ion-icon></button>
-      <button ion-button>TAMPON</button>
-      <button ion-button color="danger"></button>
+      <button ion-button color="danger" (click)="deleteMovieFromWatchlist(userMovie)"> <ion-icon name="trash"></ion-icon></button>
+      <button ion-button (click)="presentWatchedAndRatePrompt(userMovie)" >  <ion-icon name="eye"></ion-icon></button>
+      <!--<button ion-button *ngIf="watched">  <ion-icon name="eye-off"></ion-icon></button>-->
     </ion-item-options>
     <ion-item>
       <ion-thumbnail item-left>

@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 
 @Injectable()
 export class Movie {
-    id:number
+    id_movie:number
     name: string
     releaseDate: Date
     rate: number

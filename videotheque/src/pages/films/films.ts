@@ -1,5 +1,5 @@
 import { Component }      from '@angular/core';
-import { NavController, LoadingController }  from 'ionic-angular';
+import {NavController, LoadingController, AlertController}  from 'ionic-angular';
 import { Api }            from '../../classes/api'
 import { FilmDetailPage } from '../filmDetail/filmDetail'
 
@@ -18,9 +18,11 @@ export class FilmsPage {
   hasData = true
   hasWatchlist = false
   isSearching = false
+  watched = false
   constructor(public navCtrl: NavController,
               public api: Api,
-              public loadingCtrl: LoadingController) {
+              public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController) {
               }
 
 
@@ -135,9 +137,62 @@ export class FilmsPage {
   addToWatchList(movie){
     this.api.addToWatchList(movie).subscribe(res => {
       console.log(res.json())
-    },
+          this.isSearching = false
+          this.movieName = ""
+          this.movies = {}
+          this.getUserMovieWatchlist()
+
+        },
     err=> {
       console.error(err)
     })
+  }
+
+  deleteMovieFromWatchlist(movie){
+    this.api.removeFromWatchList(movie).subscribe(res => {
+        this.getUserMovieWatchlist()
+    },
+    err => {
+      console.error(err)
+    })
+  }
+
+  watchedMovie(movie, rate){
+    this.api.watchedMovieFromWatchlist(movie, rate).subscribe(res => {
+          this.watched = true
+      this.getUserMovieWatchlist()
+        },
+        err => {
+          console.error(err)
+        })
+  }
+
+  presentWatchedAndRatePrompt(movie) {
+    let alert = this.alertCtrl.create({
+      title: 'Notez ce film !!',
+      inputs: [
+        {
+          name: 'Note',
+          placeholder: '9.5',
+          type: 'number'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Noter',
+          handler: data => {
+            this.watchedMovie(movie, data.rate)
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

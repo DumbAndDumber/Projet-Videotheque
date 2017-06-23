@@ -102,10 +102,14 @@ export class Api {
   }
 
   addToWatchList(movie): Observable<Response>{
-    console.log(movie)
-    console.log(this.currentUser)
-    console.log(this.meId)
     return this.http.get(this.apiUrl + "/user_movie/add_movie_to_watchlist.php?id_user=" + this.meId + "&id_movie=" + movie.imdbID, this.headers)
   }
 
+  removeFromWatchList(movie): Observable<Response>{
+    return this.http.get(this.apiUrl + "/user_movie/remove_movie_from_watchlist.php?id_user=" + this.meId + "&id_movie=" + movie.id_movie, this.headers)
+  }
+
+  watchedMovieFromWatchlist(movie, rate): Observable<Response>{
+    return this.http.get(this.apiUrl + "/user_movie/watched_user_movie.php?id_user=" + this.meId + "&id_movie=" + movie.id_movie + "&rate=" + rate, this.headers)
+  }
 }
