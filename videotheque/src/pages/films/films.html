@@ -18,7 +18,9 @@
     <ion-icon class="icon search-bar-icon greyed" name="search" [hidden]="checkLength()"></ion-icon>
   </div>
 
-  <p *ngIf="hasData == false && hasWatchlist == false " class="error">Aucun film trouvé</p>
+  <p *ngIf="!hasData && isSearching " class="error">Aucun film trouvé</p>
+  <p *ngIf="!hasData && !hasWatchlist && !isSearching" class="error">Aucun film dans votre watchlist</p>
+
 
   <ion-list *ngIf="isMovie == true && hasData == true && isSearching == true">
     <ion-item-sliding #item1 *ngFor="let movie of Movies">
